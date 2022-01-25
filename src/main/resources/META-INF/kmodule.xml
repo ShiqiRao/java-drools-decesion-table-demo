@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule
+    xmlns="http://www.drools.org/xsd/kmodule">
+  <kbase name="DetectionKB" packages="decisiontable-template1">
+    <ruleTemplate
+        dtable="decisiontable-template1/DetectionRules.xls"
+        template="decisiontable-template1/DetectionRules.drt"
+        row="2" col="2"/>
+    <ksession name="DetectionKS"/>
+  </kbase>
+
+  <kbase name="DTableWithTemplateKB" packages="com.example.decisiontable-template">
+    <ruleTemplate
+        dtable="com/example/decisiontable-template/ExamplePolicyPricingTemplateData.xls"
+        template="com/example/decisiontable-template/BasePricing.drt"
+        row="3" col="3"/>
+    <ruleTemplate
+        dtable="com/example/decisiontable-template/ExamplePolicyPricingTemplateData.xls"
+        template="com/example/decisiontable-template/PromotionalPricing.drt"
+        row="18" col="3"/>
+    <ksession name="DTableWithTemplateKS"/>
+  </kbase>
+</kmodule>

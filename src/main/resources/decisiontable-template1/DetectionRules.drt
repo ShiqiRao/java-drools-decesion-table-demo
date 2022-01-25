@@ -1,0 +1,34 @@
+template header
+signatureCount
+dateCount
+confidence[]
+
+
+package org.drools.examples.decisiontable;
+
+function int countConfidence(Double[] confidences, Double lower, Double upper){
+  int result = 0;
+  for(Double c: confidences){
+    if(c >= lower && c <= upper){
+      result++;
+    }
+  }
+  return result;
+}
+
+template "Detection rule"
+signatureCount
+dateCount
+confidence
+
+rule "Detection rule_@{row.rowNumber}"
+
+    when
+        com.example.decision.AnalysisResult( countConfidence(signature, @{confidence0}, @{confidence1}) <= @{signatureCount}
+        , countConfidence(date, @{confidence0}, @{confidence1}) <= @{dateCount})
+        result: com.example.decision.ValidationResult()
+    then
+        result.setTriggerHumanLoop(true);
+end
+end template
+
